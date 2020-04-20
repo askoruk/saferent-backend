@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeRent", "SafeRent\SafeRe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeRent.DataAccess", "SafeRent.DataAccess\SafeRent.DataAccess.csproj", "{FFB04035-C6F7-4DC9-819C-914B1FF646B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SafeRent.BusinessLogic", "SafeRent.BusinessLogic\SafeRent.BusinessLogic.csproj", "{45C78432-94C8-49FB-A154-C6032E078379}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FFB04035-C6F7-4DC9-819C-914B1FF646B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFB04035-C6F7-4DC9-819C-914B1FF646B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFB04035-C6F7-4DC9-819C-914B1FF646B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45C78432-94C8-49FB-A154-C6032E078379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C78432-94C8-49FB-A154-C6032E078379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C78432-94C8-49FB-A154-C6032E078379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C78432-94C8-49FB-A154-C6032E078379}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

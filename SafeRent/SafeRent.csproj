@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SafeRent.DataAccess\SafeRent.DataAccess.csproj" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.0" />
+    <ProjectReference Include="..\SafeRent.BusinessLogic\SafeRent.BusinessLogic.csproj" />
   </ItemGroup>
 
 

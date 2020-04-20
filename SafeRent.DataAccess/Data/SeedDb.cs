@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+
 namespace SafeRent.DataAccess.Data
 {
     public class SeedDb
@@ -10,15 +11,36 @@ namespace SafeRent.DataAccess.Data
         {
             var context = serviceProvider.GetRequiredService<AppDbContext>();
             var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            
             context.Database.EnsureCreated();
             if (context.Users.Any()) return;
+
+            var userRole = new IdentityRole {Name = "User"};
+            roleManager.CreateAsync(userRole).GetAwaiter().GetResult();
+            
+            var adminRole = new IdentityRole {Name = "Admin"};
+            roleManager.CreateAsync(adminRole).GetAwaiter().GetResult();
+            
             var user = new ApplicationUser()
             {
-                Email = "ali@gmail.com",
+                Email = "user@gmail.com",
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = "Ali"
+                UserName = "user"
             };
-            userManager.CreateAsync(user, "Ali@123");
+
+            var admin = new ApplicationUser()
+            {
+                Email = "admin@gmail.com",
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = "admin"
+            };
+
+            userManager.CreateAsync(user, "00000000").GetAwaiter().GetResult();
+            userManager.AddToRoleAsync(user, "User").GetAwaiter().GetResult();
+
+            userManager.CreateAsync(admin, "00000000").GetAwaiter().GetResult();
+            userManager.AddToRoleAsync(admin, "Admin").GetAwaiter().GetResult();
         }
     }
 }

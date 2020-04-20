@@ -1858,6 +1858,22 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "SafeRent.BusinessLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "SafeRent.DataAccess": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SafeRent.BusinessLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SafeRent.BusinessLogic.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "SafeRent.DataAccess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -6480,6 +6496,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "SafeRent.BusinessLogic/1.0.0": {
+      "type": "project",
+      "path": "../SafeRent.BusinessLogic/SafeRent.BusinessLogic.csproj",
+      "msbuildProject": "../SafeRent.BusinessLogic/SafeRent.BusinessLogic.csproj"
+    },
     "SafeRent.DataAccess/1.0.0": {
       "type": "project",
       "path": "../SafeRent.DataAccess/SafeRent.DataAccess.csproj",
@@ -6489,7 +6510,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.Bcl.AsyncInterfaces >= 1.1.0",
-      "SafeRent.DataAccess >= 1.0.0"
+      "SafeRent.BusinessLogic >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -6519,8 +6540,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\oskoruk\\Desktop\\proj\\SafeRent.DataAccess\\SafeRent.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\oskoruk\\Desktop\\proj\\SafeRent.DataAccess\\SafeRent.DataAccess.csproj"
+            "C:\\Users\\oskoruk\\Desktop\\proj\\SafeRent.BusinessLogic\\SafeRent.BusinessLogic.csproj": {
+              "projectPath": "C:\\Users\\oskoruk\\Desktop\\proj\\SafeRent.BusinessLogic\\SafeRent.BusinessLogic.csproj"
             }
           }
         }
