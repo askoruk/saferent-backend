@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace SafeRent.DataAccess.Models
 {
     public class Apartment
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Type { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
@@ -12,5 +14,6 @@ namespace SafeRent.DataAccess.Models
         public bool AnimalsAllowed { get; set; }
         public int RentalDays { get; set; }
         public bool AvailableForRent { get; set; }
+        public ICollection<ApplicationUserApartment> ApplicationUserApartments { get; set; }
     }
 }

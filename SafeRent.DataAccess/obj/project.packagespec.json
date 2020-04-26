@@ -38,15 +38,23 @@
         },
         "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
           "target": "Package",
-          "version": "[5.0.0-preview.2.20167.3, )"
+          "version": "[5.0.0-preview.3.20215.14, )"
         },
         "Microsoft.EntityFrameworkCore": {
           "target": "Package",
-          "version": "[5.0.0-preview.2.20159.4, )"
+          "version": "[5.0.0-preview.3.20181.2, )"
+        },
+        "Microsoft.EntityFrameworkCore.Design": {
+          "target": "Package",
+          "version": "[5.0.0-preview.3.20181.2, )"
         },
         "Microsoft.EntityFrameworkCore.SqlServer": {
           "target": "Package",
-          "version": "[5.0.0-preview.2.20159.4, )"
+          "version": "[5.0.0-preview.3.20181.2, )"
+        },
+        "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+          "target": "Package",
+          "version": "[2.0.0-preview1-final, )"
         },
         "Microsoft.IdentityModel.Tokens": {
           "target": "Package",

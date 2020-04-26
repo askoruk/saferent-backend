@@ -17,6 +17,17 @@ namespace SafeRent.DataAccess.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            
+            builder.Entity<ApplicationUserApartment>()
+                .HasKey(au => new {au.ApartmentId, au.ApplicationUserId});
+            builder.Entity<ApplicationUserApartment>()
+                .HasOne(au => au.Apartment)
+                .WithMany(a => a.ApplicationUserApartments)
+                .HasForeignKey(ac => ac.ApartmentId);
+            builder.Entity<ApplicationUserApartment>()
+                .HasOne(au => au.ApplicationUser)
+                .WithMany(a => a.ApplicationUserApartments)
+                .HasForeignKey(ac => ac.ApplicationUserId);
         }
     }
 }
