@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using SafeRent.BusinessLogic.Services;
 using SafeRent.BusinessLogic.Services.Interfaces;
 using SafeRent.DataAccess.Data;
+using SafeRent.DataAccess.Models;
 
 namespace SafeRent
 {

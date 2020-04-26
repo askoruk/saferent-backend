@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
+using SafeRent.DataAccess.Models;
 
 namespace SafeRent.DataAccess.Data
 {
