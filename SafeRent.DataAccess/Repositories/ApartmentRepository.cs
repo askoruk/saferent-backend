@@ -15,22 +15,29 @@ namespace SafeRent.DataAccess.Repositories
 
         public void Add(Apartment apartment)
         {
-            throw new System.NotImplementedException();
+            _context.Apartments.Add(apartment);
+            _context.SaveChanges();
         }
 
         public void Delete(int apartmentId)
         {
-            throw new System.NotImplementedException();
+            var apartment = _context.Apartments.Find(apartmentId);
+            if (apartment == null) return;
+            
+            _context.Apartments.Remove(apartment);
+            _context.SaveChanges();
         }
 
-        public void Update(int apartmentId, Apartment updatedApartment)
+        public void Update(Apartment updatedApartment)
         {
-            throw new System.NotImplementedException();
+            // _context.Apartments.Attach(updatedApartment);
+            _context.Apartments.Update(updatedApartment);
+            _context.SaveChanges();
         }
 
         public Apartment GetById(int apartmentId)
         {
-            throw new System.NotImplementedException();
+            return _context.Apartments.Find(apartmentId);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json;
 
 namespace SafeRent.DataAccess.Models
 {
@@ -14,6 +15,7 @@ namespace SafeRent.DataAccess.Models
         public bool AnimalsAllowed { get; set; }
         public int RentalDays { get; set; }
         public bool AvailableForRent { get; set; }
+        [JsonIgnore]
         public ICollection<ApplicationUserApartment> ApplicationUserApartments { get; set; }
     }
 }

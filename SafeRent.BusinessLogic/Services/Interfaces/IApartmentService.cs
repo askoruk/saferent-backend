@@ -1,8 +1,8 @@
 ﻿using SafeRent.DataAccess.Models;
 
-namespace SafeRent.DataAccess.Repositories.Interfaces
+namespace SafeRent.BusinessLogic.Services.Interfaces
 {
-    public interface IApartmentRepository
+    public interface IApartmentService
     {
         void Add(Apartment apartment);
         void Delete(int apartmentId);
