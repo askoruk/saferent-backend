@@ -1,4 +1,5 @@
-﻿using SafeRent.DataAccess.Models;
+﻿using System.Collections.Generic;
+using SafeRent.DataAccess.Models;
 
 namespace SafeRent.BusinessLogic.Services.Interfaces
 {
@@ -8,5 +9,6 @@ namespace SafeRent.BusinessLogic.Services.Interfaces
         void Delete(int apartmentId);
         void Update(Apartment updatedApartment);
         Apartment GetById(int apartmentId);
+        ICollection<Apartment> GetAllApartments();
     }
 }

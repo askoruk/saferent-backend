@@ -1,4 +1,6 @@
-﻿using SafeRent.DataAccess.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SafeRent.DataAccess.Data;
 using SafeRent.DataAccess.Models;
 using SafeRent.DataAccess.Repositories.Interfaces;
 
@@ -38,6 +40,11 @@ namespace SafeRent.DataAccess.Repositories
         public Apartment GetById(int apartmentId)
         {
             return _context.Apartments.Find(apartmentId);
+        }
+
+        public ICollection<Apartment> GetAllApartments()
+        {
+            return _context.Apartments.ToList();
         }
     }
 }

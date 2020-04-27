@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
 
 namespace SafeRent.DataAccess.Models
@@ -7,6 +8,8 @@ namespace SafeRent.DataAccess.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        [JsonIgnore]
         public ICollection<ApplicationUserApartment> ApplicationUserApartments { get; set; }
+        public ICollection<Notification> Notifications { get; set; }
     }
 }

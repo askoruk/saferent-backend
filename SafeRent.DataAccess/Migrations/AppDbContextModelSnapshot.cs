@@ -361,7 +361,7 @@ namespace SafeRent.DataAccess.Migrations
             modelBuilder.Entity("SafeRent.DataAccess.Models.Notification", b =>
                 {
                     b.HasOne("SafeRent.DataAccess.Models.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("Notifications")
                         .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618

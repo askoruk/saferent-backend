@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Newtonsoft.Json;
-
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 namespace SafeRent.DataAccess.Models
 {
     public class Apartment

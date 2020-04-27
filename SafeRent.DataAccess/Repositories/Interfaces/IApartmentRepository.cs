@@ -1,4 +1,5 @@
-﻿using SafeRent.DataAccess.Models;
+﻿using System.Collections.Generic;
+using SafeRent.DataAccess.Models;
 
 namespace SafeRent.DataAccess.Repositories.Interfaces
 {
@@ -8,5 +9,6 @@ namespace SafeRent.DataAccess.Repositories.Interfaces
         void Delete(int apartmentId);
         void Update(Apartment updatedApartment);
         Apartment GetById(int apartmentId);
+        ICollection<Apartment> GetAllApartments();
     }
 }
