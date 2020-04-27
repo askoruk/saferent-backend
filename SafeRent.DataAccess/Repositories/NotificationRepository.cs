@@ -1,4 +1,6 @@
-﻿using SafeRent.DataAccess.Data;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SafeRent.DataAccess.Data;
 using SafeRent.DataAccess.Models;
 using SafeRent.DataAccess.Repositories.Interfaces;
 
@@ -15,12 +17,17 @@ namespace SafeRent.DataAccess.Repositories
 
         public void Add(Notification notification)
         {
-            throw new System.NotImplementedException();
+            _context.Notifications.Add(notification);
         }
 
-        public void GetById(int notificationId)
+        public Notification GetById(int notificationId)
         {
-            throw new System.NotImplementedException();
+            return _context.Notifications.Find(notificationId);
+        }
+
+        public ICollection<Notification> GetAllUserNotifications(string userId)
+        {
+            return _context.Notifications.Where(n => n.User.Id == userId).ToList();
         }
     }
 }
