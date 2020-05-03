@@ -22,9 +22,12 @@ namespace SafeRent.BusinessLogic.Services
 			var keyInfo = GetKeyInfo(accessKey);
 			var signature = GetAccessKeySignature(accessKey);
 			var secret = "secret";
+
+			if (keyInfo == null || signature == null) return false;
 			
-			return signature == Encoding.UTF8.GetString(GenerateKey(keyInfo, secret));
+			return signature == Convert.ToBase64String(GenerateKey(keyInfo, secret));
 		}
+		
 		private byte[] GenerateKey(string data, string secret)
 		{
 			var algorithm = new HMac(new Sha256Digest());
@@ -42,7 +45,9 @@ namespace SafeRent.BusinessLogic.Services
 		private string FormatAccessKey(string data, byte[] key)
 		{
 			var dataBytes = Encoding.UTF8.GetBytes(data);
-			
+
+			var x = Encoding.UTF8.GetString(key);
+			var y = Convert.ToBase64String(key);
 			return $"{Convert.ToBase64String(dataBytes)}.{Convert.ToBase64String(key)}";
 		}
 
@@ -58,8 +63,15 @@ namespace SafeRent.BusinessLogic.Services
 		{
 			var separatorIndex = accessKey.IndexOf('.', StringComparison.InvariantCulture);
 			if (separatorIndex < 0) return null;
-			
-			return Encoding.UTF8.GetString(Convert.FromBase64String(accessKey.Substring(separatorIndex)));
+
+			try
+			{
+				return Convert.ToBase64String(Convert.FromBase64String(accessKey.Substring(separatorIndex + 1)));
+			}
+			catch (Exception)
+			{
+				return null;
+			}
 		}
 	}
 }
