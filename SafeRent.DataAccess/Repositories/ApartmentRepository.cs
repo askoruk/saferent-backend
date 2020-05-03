@@ -34,7 +34,6 @@ namespace SafeRent.DataAccess.Repositories
 
         public void Update(Apartment updatedApartment)
         {
-            // _context.Apartments.Attach(updatedApartment);
             _context.Apartments.Update(updatedApartment);
             _context.SaveChanges();
         }

@@ -2,6 +2,27 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "AWSSDK.Core/3.5.0-beta": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/AWSSDK.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.SecretsManager/3.5.0-beta": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.5.0-beta, 3.6.0-beta)"
+        },
+        "compile": {
+          "lib/netstandard2.0/AWSSDK.SecretsManager.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.SecretsManager.dll": {}
+        }
+      },
       "BouncyCastle/1.8.6.1": {
         "type": "package",
         "compile": {
@@ -1936,6 +1957,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "AWSSDK.Core": "3.5.0-beta",
+          "AWSSDK.SecretsManager": "3.5.0-beta",
           "BouncyCastle": "1.8.6.1",
           "SafeRent.DataAccess": "1.0.0"
         },
@@ -1975,6 +1998,58 @@
     }
   },
   "libraries": {
+    "AWSSDK.Core/3.5.0-beta": {
+      "sha512": "ZRFwKVPowoB87Fgof6F9Vxr/6/3TvAc7Pc17S74oUCCEbPnMLZtELqEREDiWMqkUYZxwcFrgmpML8LQl792XzA==",
+      "type": "package",
+      "path": "awssdk.core/3.5.0-beta",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "awssdk.core.3.5.0-beta.nupkg.sha512",
+        "awssdk.core.nuspec",
+        "lib/net35/AWSSDK.Core.dll",
+        "lib/net35/AWSSDK.Core.pdb",
+        "lib/net35/AWSSDK.Core.xml",
+        "lib/net45/AWSSDK.Core.dll",
+        "lib/net45/AWSSDK.Core.pdb",
+        "lib/net45/AWSSDK.Core.xml",
+        "lib/netstandard1.3/AWSSDK.Core.dll",
+        "lib/netstandard1.3/AWSSDK.Core.pdb",
+        "lib/netstandard1.3/AWSSDK.Core.xml",
+        "lib/netstandard2.0/AWSSDK.Core.dll",
+        "lib/netstandard2.0/AWSSDK.Core.pdb",
+        "lib/netstandard2.0/AWSSDK.Core.xml",
+        "tools/account-management.ps1"
+      ]
+    },
+    "AWSSDK.SecretsManager/3.5.0-beta": {
+      "sha512": "XdYknVp9n84wmEskKiNPvago8j59ZYSW8uCXLdgWbTWIMMONNRuKspO3uxW2xlIjCccsiO6lwomeLIynOr38uQ==",
+      "type": "package",
+      "path": "awssdk.secretsmanager/3.5.0-beta",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.SecretsManager.CodeAnalysis.dll",
+        "awssdk.secretsmanager.3.5.0-beta.nupkg.sha512",
+        "awssdk.secretsmanager.nuspec",
+        "lib/net35/AWSSDK.SecretsManager.dll",
+        "lib/net35/AWSSDK.SecretsManager.pdb",
+        "lib/net35/AWSSDK.SecretsManager.xml",
+        "lib/net45/AWSSDK.SecretsManager.dll",
+        "lib/net45/AWSSDK.SecretsManager.pdb",
+        "lib/net45/AWSSDK.SecretsManager.xml",
+        "lib/netstandard1.3/AWSSDK.SecretsManager.dll",
+        "lib/netstandard1.3/AWSSDK.SecretsManager.pdb",
+        "lib/netstandard1.3/AWSSDK.SecretsManager.xml",
+        "lib/netstandard2.0/AWSSDK.SecretsManager.dll",
+        "lib/netstandard2.0/AWSSDK.SecretsManager.pdb",
+        "lib/netstandard2.0/AWSSDK.SecretsManager.xml",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "BouncyCastle/1.8.6.1": {
       "sha512": "rkqpuKmJkdcfTMBkIj1b5nMdBAWKwAyh+I/BQYeqqSD2jkIlhwc9qBNKmSbnpmmm5c29qHZGLpvBSTNWvDLtQA==",
       "type": "package",

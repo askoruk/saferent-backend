@@ -11,7 +11,7 @@ namespace SafeRent.BusinessLogic.Services
 	{
 		public string GetStringAccessKey(string data)
 		{
-			var secret = "secret";
+			var secret = SecretManager.GetSecret("EncryptionSecret");
 			var key = GenerateKey(data, secret);
 
 			return FormatAccessKey(data, key);
@@ -21,7 +21,7 @@ namespace SafeRent.BusinessLogic.Services
 		{
 			var keyInfo = GetKeyInfo(accessKey);
 			var signature = GetAccessKeySignature(accessKey);
-			var secret = "secret";
+			var secret = SecretManager.GetSecret("EncryptionSecret");
 
 			if (keyInfo == null || signature == null) return false;
 			
@@ -56,7 +56,9 @@ namespace SafeRent.BusinessLogic.Services
 			var separatorIndex = accessKey.IndexOf('.', StringComparison.InvariantCulture);
 			if (separatorIndex < 0) return null;
 			
-			return Encoding.UTF8.GetString(Convert.FromBase64String(accessKey.Substring(0, separatorIndex)));
+			return Encoding.UTF8.GetString(
+				Convert.FromBase64String(accessKey.Substring(0, separatorIndex))
+				);
 		}
 
 		private string GetAccessKeySignature(string accessKey)
