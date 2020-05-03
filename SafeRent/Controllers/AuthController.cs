@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SafeRent.BusinessLogic.Models;
 using SafeRent.BusinessLogic.Services.Interfaces;
-using SafeRent.DataAccess.Data;
 using SafeRent.DataAccess.Models;
 
 namespace SafeRent.Controllers

@@ -10,5 +10,6 @@ namespace SafeRent.DataAccess.Repositories.Interfaces
         void Update(Apartment updatedApartment);
         Apartment GetById(int apartmentId);
         ICollection<Apartment> GetAllApartments();
+        void AddUserToApartment(string userId, int apartmentId);
     }
 }

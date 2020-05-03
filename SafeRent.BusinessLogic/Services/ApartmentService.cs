@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SafeRent.BusinessLogic.Models;
 using SafeRent.BusinessLogic.Services.Interfaces;
 using SafeRent.DataAccess.Models;
 using SafeRent.DataAccess.Repositories.Interfaces;
@@ -37,6 +38,11 @@ namespace SafeRent.BusinessLogic.Services
         public ICollection<Apartment> GetAllApartments()
         {
             return _repository.GetAllApartments();
+        }
+
+        public void AddUserToApartment(UserToApartmentModel model)
+        {
+            _repository.AddUserToApartment(model.UserId, model.ApartmentId);
         }
     }
 }

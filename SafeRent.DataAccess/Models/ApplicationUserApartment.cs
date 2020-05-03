@@ -8,5 +8,6 @@ namespace SafeRent.DataAccess.Models
         public ApplicationUser ApplicationUser { get; set; }
         public int ApartmentId { get; set; }
         public Apartment Apartment { get; set; }
+        public string EndOfRental { get; set; }
     }
 }

@@ -68,6 +68,7 @@ namespace SafeRent
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IApartmentRepository, ApartmentRepository>();
             services.AddScoped<IApartmentService, ApartmentService>();
+            services.AddScoped<IEncryptionService, EncryptionService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

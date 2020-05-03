@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SafeRent.BusinessLogic.Services.Interfaces;
+using SafeRent.BusinessLogic.Models;
 using SafeRent.DataAccess.Models;
 
 namespace SafeRent.Controllers
@@ -50,6 +50,14 @@ namespace SafeRent.Controllers
         public ActionResult<ICollection<Apartment>> Get()
         {
             return Ok(_apartmentService.GetAllApartments());
+        }
+
+        [Route("adduser")]
+        [HttpPost]
+        public ActionResult AddUserToApartment([FromBody]UserToApartmentModel model)
+        {
+            _apartmentService.AddUserToApartment(model);
+            return Ok();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using SafeRent.DataAccess.Data;
 using SafeRent.DataAccess.Models;
@@ -45,6 +47,22 @@ namespace SafeRent.DataAccess.Repositories
         public ICollection<Apartment> GetAllApartments()
         {
             return _context.Apartments.ToList();
+        }
+
+        public void AddUserToApartment(string userId, int apartmentId)
+        {
+            var user = _context.Users.Find(userId);
+            var apartment = _context.Apartments.Find(apartmentId);
+
+            if (user == null || apartment == null) return;
+
+            _context.Add(new ApplicationUserApartment
+            {
+                ApplicationUser = user,
+                Apartment = apartment,
+                EndOfRental = DateTime.Now.ToString(CultureInfo.InvariantCulture)
+            });
+            _context.SaveChanges();
         }
     }
 }

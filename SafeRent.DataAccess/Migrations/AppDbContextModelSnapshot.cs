@@ -262,6 +262,9 @@ namespace SafeRent.DataAccess.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("EndOfRental")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ApartmentId", "ApplicationUserId");
 
                     b.HasIndex("ApplicationUserId");
