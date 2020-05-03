@@ -62,5 +62,13 @@ namespace SafeRent.Controllers
             return Ok("successfully registered");
         }
 
+        [Route("userinfo")]
+        [HttpGet]
+        public ActionResult<object> GetUserInfo()
+        {
+            var x = User.Claims;
+            return new object();
+        }
+
     }
 }

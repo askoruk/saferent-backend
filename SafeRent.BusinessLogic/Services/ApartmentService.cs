@@ -44,5 +44,10 @@ namespace SafeRent.BusinessLogic.Services
         {
             _repository.AddUserToApartment(model.UserId, model.ApartmentId);
         }
+
+        public List<Apartment> GetApartmentsForUser(string userId)
+        {
+            return _repository.GetApartmentsForUser(userId);
+        }
     }
 }

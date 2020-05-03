@@ -11,5 +11,6 @@ namespace SafeRent.DataAccess.Repositories.Interfaces
         Apartment GetById(int apartmentId);
         ICollection<Apartment> GetAllApartments();
         void AddUserToApartment(string userId, int apartmentId);
+        List<Apartment> GetApartmentsForUser(string userId);
     }
 }

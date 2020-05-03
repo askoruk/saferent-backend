@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using SafeRent.DataAccess.Data;
 using SafeRent.DataAccess.Models;
 using SafeRent.DataAccess.Repositories.Interfaces;
@@ -62,6 +63,14 @@ namespace SafeRent.DataAccess.Repositories
                 EndOfRental = DateTime.Now.ToString(CultureInfo.InvariantCulture)
             });
             _context.SaveChanges();
+        }
+
+        public List<Apartment> GetApartmentsForUser(string userId)
+        {
+            return _context.Apartments
+                .Include(a => a.ApplicationUserApartments)
+                .Where(a => a.ApplicationUserApartments.Any(x => x.ApplicationUserId == userId))
+                .ToList();
         }
     }
 }

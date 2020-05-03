@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using SafeRent.BusinessLogic.Models;
-using SafeRent.BusinessLogic.Services;
 using SafeRent.BusinessLogic.Services.Interfaces;
 
 namespace SafeRent.Controllers
@@ -37,6 +36,5 @@ namespace SafeRent.Controllers
 		{
 			return _encryptionService.VerifyAccessKey(accessKey);
 		}
-
 	}
 }

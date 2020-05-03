@@ -10,6 +10,7 @@ namespace SafeRent.DataAccess.Models
         public string LastName { get; set; }
         [JsonIgnore]
         public ICollection<ApplicationUserApartment> ApplicationUserApartments { get; set; }
+        [JsonIgnore]
         public ICollection<Notification> Notifications { get; set; }
     }
 }

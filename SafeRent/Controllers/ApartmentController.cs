@@ -59,5 +59,12 @@ namespace SafeRent.Controllers
             _apartmentService.AddUserToApartment(model);
             return Ok();
         }
+
+        [Route("getforuser/{userId}")]
+        [HttpGet]
+        public ActionResult<List<Apartment>> GetApartmentsForUser(string userId)
+        {
+            return _apartmentService.GetApartmentsForUser(userId);
+        }
     }
 }
