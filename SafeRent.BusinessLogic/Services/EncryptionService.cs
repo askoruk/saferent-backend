@@ -3,6 +3,7 @@ using System.Text;
 using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Macs;
 using Org.BouncyCastle.Crypto.Parameters;
+using SafeRent.BusinessLogic.Models;
 using SafeRent.BusinessLogic.Services.Interfaces;
 
 namespace SafeRent.BusinessLogic.Services
@@ -24,6 +25,11 @@ namespace SafeRent.BusinessLogic.Services
 			var secret = SecretManager.GetSecret("EncryptionSecret");
 
 			if (keyInfo == null || signature == null) return false;
+
+			var keyInfoObject = KeyInfoModel.ParseFromString(keyInfo);
+			DateTime.TryParse(keyInfoObject.ExpirationDate, out var expirationDate);
+			
+			if (DateTime.UtcNow > expirationDate) return false;
 			
 			return signature == Convert.ToBase64String(GenerateKey(keyInfo, secret));
 		}

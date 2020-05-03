@@ -23,6 +23,9 @@ namespace SafeRent.DataAccess.Data
             var adminRole = new IdentityRole {Name = "Admin"};
             roleManager.CreateAsync(adminRole).GetAwaiter().GetResult();
             
+            var landlordRole = new IdentityRole {Name = "Landlord"};
+            roleManager.CreateAsync(landlordRole).GetAwaiter().GetResult();
+            
             var user = new ApplicationUser()
             {
                 Email = "user@gmail.com",
@@ -37,11 +40,21 @@ namespace SafeRent.DataAccess.Data
                 UserName = "admin"
             };
 
+            var landlord = new ApplicationUser()
+            {
+                Email = "landlord@gmail.com",
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = "Landlord"
+            };
+
             userManager.CreateAsync(user, "00000000").GetAwaiter().GetResult();
             userManager.AddToRoleAsync(user, "User").GetAwaiter().GetResult();
 
             userManager.CreateAsync(admin, "00000000").GetAwaiter().GetResult();
             userManager.AddToRoleAsync(admin, "Admin").GetAwaiter().GetResult();
+            
+            userManager.CreateAsync(landlord, "00000000").GetAwaiter().GetResult();
+            userManager.AddToRoleAsync(landlord, "Landlord").GetAwaiter().GetResult();
         }
     }
 }
