@@ -8,5 +8,8 @@ namespace SafeRent.BusinessLogic.Services.Interfaces
 		void Add(Notification notification);
 		Notification GetById(int notificationId);
 		ICollection<Notification> GetAllUserNotifications(string userId);
+		void NotifyThatKeyUsed(string userId);
+		void NotifyTenantThatKeyExpired(string userId);
+		void NotifyLandlordThatKeyExpired(string userId);
 	}
 }

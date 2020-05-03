@@ -5,11 +5,19 @@ using Org.BouncyCastle.Crypto.Macs;
 using Org.BouncyCastle.Crypto.Parameters;
 using SafeRent.BusinessLogic.Models;
 using SafeRent.BusinessLogic.Services.Interfaces;
+using SafeRent.DataAccess.Models;
 
 namespace SafeRent.BusinessLogic.Services
 {
 	public class EncryptionService : IEncryptionService
 	{
+		private readonly INotificationService _notificationService;
+
+		public EncryptionService(INotificationService notificationService)
+		{
+			_notificationService = notificationService;
+		}
+		
 		public string GetStringAccessKey(string data)
 		{
 			var secret = SecretManager.GetSecret("EncryptionSecret");
@@ -25,11 +33,28 @@ namespace SafeRent.BusinessLogic.Services
 			var secret = SecretManager.GetSecret("EncryptionSecret");
 
 			if (keyInfo == null || signature == null) return false;
-
 			var keyInfoObject = KeyInfoModel.ParseFromString(keyInfo);
+			
+			_notificationService.NotifyThatKeyUsed(keyInfoObject.Bearer);
+			
 			DateTime.TryParse(keyInfoObject.ExpirationDate, out var expirationDate);
 			
-			if (DateTime.UtcNow > expirationDate) return false;
+			if (DateTime.Now > expirationDate)
+			{
+				_notificationService.NotifyLandlordThatKeyExpired(keyInfoObject.Issuer);
+				return false;
+			}
+			
+			var daysLeft = DateTime.Now.Subtract(expirationDate).Days;
+			if (daysLeft < 5)
+			{
+				_notificationService.Add(new Notification
+				{
+					DateSend = DateTime.Now.ToShortDateString(),
+					UserId = keyInfoObject.Bearer,
+					Message = $"Your access key expires in {daysLeft} days."
+				});
+			}
 			
 			return signature == Convert.ToBase64String(GenerateKey(keyInfo, secret));
 		}
