@@ -1,4 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SafeRent.BusinessLogic.Models;
@@ -7,6 +11,7 @@ using SafeRent.DataAccess.Models;
 
 namespace SafeRent.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     public class AuthController : Controller
     {
@@ -19,6 +24,7 @@ namespace SafeRent.Controllers
             _authService = authService;
         }
 
+        [AllowAnonymous]
         [Route("login")]
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginModel loginModel)
@@ -30,11 +36,18 @@ namespace SafeRent.Controllers
             if (user == null || !await _userManager.CheckPasswordAsync(user, loginModel.Password))
                 return Unauthorized();
 
-            var token = _authService.GetToken(loginModel);
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.Email, user.Email),
+            };
+
+            var token = _authService.GetToken(loginModel, claims);
 
             return Ok(new {token});
         }
 
+        [AllowAnonymous]
         [Route("register")]
         [HttpPost]
         public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
@@ -66,9 +79,14 @@ namespace SafeRent.Controllers
         [HttpGet]
         public ActionResult<object> GetUserInfo()
         {
-            var x = User.Claims;
-            return new object();
+            var user = _userManager.GetUserAsync(User).GetAwaiter().GetResult();
+            var userId = user.Id;
+            var email = user.Email;
+            var firstName = user.FirstName;
+            var lastName = user.LastName;
+            var phone = user.PhoneNumber;
+            var role = User.IsInRole("admin") ? "admin" : "user";
+            return Ok( new { userId, email, role, firstName, lastName, phone });
         }
-
     }
 }

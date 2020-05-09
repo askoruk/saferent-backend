@@ -28,7 +28,7 @@ namespace SafeRent.Controllers
             return Ok(_notificationService.GetById(id));
         }
 
-        [Route("getall")]
+        [Route("getall/{id}")]
         [HttpGet]
         public IActionResult GetAllUserNotifications(string id)
         {

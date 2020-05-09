@@ -36,7 +36,7 @@ namespace SafeRent
                 .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
-                    options.Password.RequiredLength = 8;   // минимальная длина
+                    options.Password.RequiredLength = 8;
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
@@ -61,13 +61,16 @@ namespace SafeRent
                     {
                         ValidateIssuer = false,
                         ValidateAudience = false,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SecureKey"))
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(Configuration.GetSection("Secrets").GetSection("SecretKey").Value))
                     };
                 });
 
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IApartmentRepository, ApartmentRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IApartmentService, ApartmentService>();
+            services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<IEncryptionService, EncryptionService>();
         }
 

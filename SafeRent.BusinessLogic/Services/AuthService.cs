@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
@@ -22,24 +23,18 @@ namespace SafeRent.BusinessLogic.Services
             _dbContext = dbContext;
         }
 
-        public string GetToken(LoginModel loginModel)
+        public string GetToken(LoginModel loginModel, Claim[] claims)
         {
-            var authClaims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, loginModel.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
-                
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration
                 .GetSection("Secrets")
                 .GetSection("SecretKey").Value));
                 
             var token = new JwtSecurityToken(
                 expires: DateTime.Now.AddHours(12),
-                claims: authClaims,
+                claims: claims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
             );
-            
+
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
