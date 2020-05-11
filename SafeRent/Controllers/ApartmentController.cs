@@ -19,8 +19,12 @@ namespace SafeRent.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Apartment apartment)
         {
-            _apartmentService.Add(apartment);
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                _apartmentService.Add(apartment);
+                return Ok();
+            }
+            return BadRequest();
         }
 
         [Route("{id}")]
@@ -72,6 +76,13 @@ namespace SafeRent.Controllers
         public ActionResult<object> GetApartmentOwner(string userId, int apartmentId)
         {
             return _apartmentService.GetApartmentOwner(userId, apartmentId);
+        }
+
+        [Route("getuserkeys/{userId}")]
+        [HttpGet]
+        public ActionResult<List<AccessKey>> GetUserKeys(string userId)
+        {
+            return _apartmentService.GetUserKeys(userId);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace SafeRent.DataAccess.Data
     {
         public virtual  DbSet<Apartment> Apartments { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }    
+        public virtual DbSet<AccessKey> AccessKeys { get; set; }
         
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {

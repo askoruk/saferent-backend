@@ -22,6 +22,8 @@ namespace SafeRent.DataAccess.Repositories
         {
             _context.Apartments.Add(apartment);
             _context.SaveChanges();
+
+            int id = apartment.Id;
         }
 
         public void Delete(int apartmentId)
@@ -75,10 +77,17 @@ namespace SafeRent.DataAccess.Repositories
 
         public object GetApartmentOwner(string userId, int apartmentId)
         {
-            return _context.Users
+            var user = _context.Users
                 .Include(x => x.ApplicationUserApartments)
-                .Where(x => x.Id != userId && x.ApplicationUserApartments.Any(a => a.ApartmentId == apartmentId))
-                .FirstOrDefault();
+                .FirstOrDefault(x => x.Id != userId && x.ApplicationUserApartments.Any(a => a.ApartmentId == apartmentId));
+
+            return user != null ? new {user.Id, user.FirstName, user.LastName, user.Email, user.PhoneNumber} : null;
         }
+
+        public List<AccessKey> GetUserKeys(string userId)
+        {
+            return _context.AccessKeys.Where(x => x.BearerId == userId).ToList();
+        }
+
     }
 }
