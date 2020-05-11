@@ -13,5 +13,7 @@ namespace SafeRent.BusinessLogic.Services.Interfaces
         ICollection<Apartment> GetAllApartments();
         void AddUserToApartment(UserToApartmentModel model);
         List<Apartment> GetApartmentsForUser(string userId);
+
+        object GetApartmentOwner(string userId, int apartmentId);
     }
 }

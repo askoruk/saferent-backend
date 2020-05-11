@@ -72,5 +72,13 @@ namespace SafeRent.DataAccess.Repositories
                 .Where(a => a.ApplicationUserApartments.Any(x => x.ApplicationUserId == userId))
                 .ToList();
         }
+
+        public object GetApartmentOwner(string userId, int apartmentId)
+        {
+            return _context.Users
+                .Include(x => x.ApplicationUserApartments)
+                .Where(x => x.Id != userId && x.ApplicationUserApartments.Any(a => a.ApartmentId == apartmentId))
+                .FirstOrDefault();
+        }
     }
 }

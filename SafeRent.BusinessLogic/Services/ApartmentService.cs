@@ -49,5 +49,10 @@ namespace SafeRent.BusinessLogic.Services
         {
             return _repository.GetApartmentsForUser(userId);
         }
+
+        public object GetApartmentOwner(string userId, int apartmentId)
+        {
+            return _repository.GetApartmentOwner(userId, apartmentId);
+        }
     }
 }

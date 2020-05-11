@@ -66,5 +66,12 @@ namespace SafeRent.Controllers
         {
             return _apartmentService.GetApartmentsForUser(userId);
         }
+
+        [Route("{apartmentId}/getowner")]
+        [HttpGet]
+        public ActionResult<object> GetApartmentOwner(string userId, int apartmentId)
+        {
+            return _apartmentService.GetApartmentOwner(userId, apartmentId);
+        }
     }
 }

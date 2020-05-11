@@ -88,5 +88,12 @@ namespace SafeRent.Controllers
             var role = User.IsInRole("admin") ? "admin" : "user";
             return Ok( new { userId, email, role, firstName, lastName, phone });
         }
+
+        [Route("test")]
+        [HttpGet]
+        public IActionResult Test()
+        {
+            return Ok("test");
+        }
     }
 }
