@@ -69,6 +69,8 @@ namespace SafeRent
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IApartmentRepository, ApartmentRepository>();
             services.AddScoped<INotificationRepository, NotificationRepository>();
+            services.AddScoped<IKeyRepository, KeyRepository>();
+            services.AddScoped<IKeyService, KeyService>();
             services.AddScoped<IApartmentService, ApartmentService>();
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<IEncryptionService, EncryptionService>();

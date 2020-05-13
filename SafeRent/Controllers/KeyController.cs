@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SafeRent.BusinessLogic.Models;
 using SafeRent.BusinessLogic.Services.Interfaces;
+using SafeRent.DataAccess.Models;
 
 namespace SafeRent.Controllers
 {
@@ -9,10 +12,12 @@ namespace SafeRent.Controllers
 	public class KeyController : Controller
 	{
 		private readonly IEncryptionService _encryptionService;
+		private readonly IKeyService _keyService;
 
-		public KeyController(IEncryptionService encryptionService)
+		public KeyController(IEncryptionService encryptionService, IKeyService keyService)
 		{
 			_encryptionService = encryptionService;
+			_keyService = keyService;
 		}
 
 		[Route("getkey")]
@@ -35,6 +40,13 @@ namespace SafeRent.Controllers
 		public ActionResult<bool> VerifyAccessKey([FromForm]string accessKey)
 		{
 			return _encryptionService.VerifyAccessKey(accessKey);
+		}
+		
+		[Route("getuserkeys/{userId}")]
+		[HttpGet]
+		public ActionResult<List<AccessKey>> GetUserKeys(string userId)
+		{
+			return _keyService.GetUserKeys(userId).ToList();
 		}
 	}
 }

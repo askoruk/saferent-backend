@@ -84,10 +84,7 @@ namespace SafeRent.DataAccess.Repositories
             return user != null ? new {user.Id, user.FirstName, user.LastName, user.Email, user.PhoneNumber} : null;
         }
 
-        public List<AccessKey> GetUserKeys(string userId)
-        {
-            return _context.AccessKeys.Where(x => x.BearerId == userId).ToList();
-        }
+        
 
     }
 }

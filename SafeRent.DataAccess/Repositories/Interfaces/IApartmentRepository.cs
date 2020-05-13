@@ -15,6 +15,5 @@ namespace SafeRent.DataAccess.Repositories.Interfaces
 
         object GetApartmentOwner(string userId, int apartmentId);
 
-        List<AccessKey> GetUserKeys(string userId);
     }
 }

@@ -78,11 +78,6 @@ namespace SafeRent.Controllers
             return _apartmentService.GetApartmentOwner(userId, apartmentId);
         }
 
-        [Route("getuserkeys/{userId}")]
-        [HttpGet]
-        public ActionResult<List<AccessKey>> GetUserKeys(string userId)
-        {
-            return _apartmentService.GetUserKeys(userId);
-        }
+        
     }
 }
