@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SafeRent.BusinessLogic.Models;
 using SafeRent.BusinessLogic.Services.Interfaces;
 using SafeRent.DataAccess.Models;
@@ -47,6 +48,14 @@ namespace SafeRent.Controllers
 		public ActionResult<List<AccessKey>> GetUserKeys(string userId)
 		{
 			return _keyService.GetUserKeys(userId).ToList();
+		}
+
+		[HttpPost]
+		public IActionResult Post([FromBody]AccessKey accessKey)
+		{
+			if (!ModelState.IsValid) return BadRequest();
+			_keyService.Add(accessKey);
+			return Ok();
 		}
 	}
 }
